@@ -40,6 +40,8 @@ class Message(models.Model):
     destination = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='destinations')
     content = models.CharField(max_length=400)
 
+    def __str__(self):
+        return '%s & %s : "%s"' % (self.source, self.destination, self.content)
 
 
 class Group(models.Model):
@@ -57,4 +59,4 @@ class Membership(models.Model):
     invite_reason = models.CharField(max_length=64)
 
     def __str__(self):
-        return "%s -> %s [%s]" % (self.person, self.group, self.date_joined)
+        return '%s/%s/%s' % (self.person, self.group, self.date_joined)
